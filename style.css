@@ -1,8 +1,5 @@
-<!-- Pages -->
-
 body {
-  color: grey;
-  line-height: 1.5;
+  margin: 0;
 }
 
 img {
@@ -22,8 +19,10 @@ img {
 .main {
   grid-area: main;
   width: 600px;
+  color: grey;
   font-size: 20px;
   text-align: justify;
+  line-height: 1.5;
   padding-bottom: 50px;
 }
 
@@ -31,6 +30,7 @@ img {
   grid-area: footer;
   padding-top: 50px;
   padding-bottom: 50px;
+  color: grey;
   font-size: 10px;
   line-height: 2.0;
   text-align: left;
@@ -83,19 +83,12 @@ a:visited {
   text-decoration: none;
 }
 
-
-<!-- Navigation Bar -->
-
-body {
-  margin: 0;
-}
-
 img.icon {
   width: 32px;
   height: 32px;
 }
 
-ul {
+ul.menu {
   top: 0;
   position: fixed;
   list-style-type: none;
@@ -110,7 +103,7 @@ ul {
   padding-left: 20px;
 }
 
-li {
+li.menu {
   float: right;
 }
 
@@ -131,6 +124,7 @@ li a:hover, .dropdown:hover .dropbtn {
 
 li.dropdown {
   display: inline-block;
+  float: right;
 }
 
 .active {
@@ -170,9 +164,6 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-
-<!-- Adaptative Screen -->
 
 @media screen and (max-width:900px), (orientation: portrait)  {
 
