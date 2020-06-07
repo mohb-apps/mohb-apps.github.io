@@ -64,11 +64,14 @@ img {
 
 .home-header-container {
   position: static;
+  text-align: left;
+  width: 100%;
 }
 
 .home-header-text {
-  position: absolute;
-  bottom: 160px;
+  position: relative;
+  width: 80%;
+  bottom: 250px;
   left: 200px;
   color: white;
 }
@@ -82,7 +85,6 @@ img {
   justify-content: center;
   background-color: #FFFFFF;
   padding-bottom: 100px;
-  padding-left: 28px;
 }
 
 .home-grid-container > div {
