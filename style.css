@@ -73,6 +73,7 @@ img {
 .home-header {
   grid-area: home-header;
   position: static;
+  padding-top: 88px;
   text-align: left;
   width: auto;
 }
@@ -145,17 +146,6 @@ img.icon {
   height: 40px;
 }
 
-img.logo_icon {
-  margin-left: -70px;
-  margin-top: 2px;
-  width: 0px;
-}
-
-img.home_icon {
-  width: 40px;
-  height: 40px;
-}
-
 img.home-panel {
   width: 90%;
 }
@@ -176,20 +166,6 @@ ul.menu {
 
 li.logo {
   float: left;
-  padding-right: 50px;
-}
-
-li.logo_icon {
-  float: left;
-  margin-top: -5px;
-  padding-right: 0px;
-}
-
-li.home_icon {
-  float: right;
-  margin-left: -50px;
-  margin-right: 70px;
-  margin-top: -2px;
 }
 
 li.menu {
@@ -262,21 +238,12 @@ li a:hover, .dropdown:hover .dropbtn {
 @media screen and (max-width:700px)  {
 
   img.logo {
-    width: 0px;
-  }
-
-  img.logo_icon {
     width: 120px;
     height: 40px;
-  }
-
-  img.home_icon {
-    width: 0px;
-    height: 0px;
+    padding-top: 12px;
   }
 
 }
-
 
 @media screen and (max-width:900px), (orientation: portrait)  {
 
@@ -287,9 +254,8 @@ li a:hover, .dropdown:hover .dropbtn {
   }
 
   ul.menu {
-    position: static;
-    border-bottom-style: none;
-    padding-bottom: 18px;
+    position: fixed;
+    padding-bottom: 12px;
   }
 
   .header {
@@ -368,6 +334,7 @@ li a:hover, .dropdown:hover .dropbtn {
 
   .home-header {
     width: 100%;
+    padding-top: 87px;
   }
 
   .home-header-text {
