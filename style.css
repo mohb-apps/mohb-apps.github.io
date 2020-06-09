@@ -28,12 +28,18 @@ img {
 
 .footer {
   grid-area: footer;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
   color: grey;
   font-size: 10px;
-  line-height: 2.0;
+  line-height: 1.2;
   text-align: left;
+  border-top-style: solid;
+  border-color: lightgrey;
+  border-width: 1px;
+
 }
 
 .panel {
@@ -56,8 +62,7 @@ img {
   display: grid;
   grid-template-areas:
   'header panel'
-  'main panel'
-  'footer footer';
+  'main panel';
   grid-gap: 20px;
   justify-content: center;
   background-color: #FFFFFF;
@@ -87,6 +92,7 @@ img {
   bottom: 250px;
   left: 100px;
   color: white;
+  text-shadow: 3px 3px 6px grey;
 }
 
 .home-main {
@@ -308,7 +314,7 @@ li a:hover, .dropdown:hover .dropbtn {
     'panel';
     justify-content: center;
     background-color: #FFFFFF;
-    padding: 20px;
+    padding: 40px;
   }
   .home-grid-container {
     display: grid;
