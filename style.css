@@ -9,162 +9,23 @@ img {
   margin-right: auto;
 }
 
-.header {
-  grid-area: header;
-  width: 600px;
-  font-size: 50px;
-  text-align: left;
+img.logo {
+  margin-left: -20px;
+  margin-top: 2px;
 }
 
-.main {
-  grid-area: main;
-  width: 600px;
-  color: grey;
-  font-size: 20px;
-  text-align: justify;
-  line-height: 1.5;
-  padding-bottom: 50px;
+img.icon {
+  width: 40px;
+  height: 40px;
 }
 
-.footer {
-  grid-area: footer;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 50px;
-  padding-right: 50px;
-  color: grey;
-  font-size: 10px;
-  line-height: 1.2;
-  text-align: left;
-  border-top-style: solid;
-  border-color: lightgrey;
-  border-width: 1px;
+img.home-panel {
+  width: 90%;
 }
 
-.panel {
-  grid-area: panel;
-  width: 250px;
-  padding-top: 75px;
-  padding-left: 20px;
-}
-
-.home-panel {
-  grid-area: home-panel;
-  width: 200px;
-  margin-bottom: -30px;
-  margin-right: 20px;
-  padding-top: 7px;
-  padding-left: 40px;
-}
-
-.app-1 {
-  grid-area: app-1;
-  width: 200px;
-  color: grey;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.0;
-  padding-bottom: 50px;
-}
-
-.app-2 {
-  grid-area: app-2;
-  width: 200px;
-  color: grey;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.0;
-  padding-bottom: 50px;
-}
-
-.app-3 {
-  grid-area: app-3;
-  width: 200px;
-  color: grey;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.0;
-  padding-bottom: 50px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-  'header panel'
-  'main panel';
-  grid-gap: 20px;
-  justify-content: center;
-  background-color: #FFFFFF;
-  padding-top: 70px;
-  padding-bottom: 100px;
-  padding-left: 28px;
-}
-
-.grid-container > div {
-  font-family: Ubuntu;
-}
-
-.home-header {
-  grid-area: home-header;
-  position: static;
-  padding-top: 88px;
-  text-align: left;
-  width: auto;
-}
-
-.home-header-text {
-  grid-area: home-header-text;
-  position: relative;
-  width: 80%;
-  font-size: 50px;
-  font-family: Ubuntu;
-  bottom: 250px;
-  left: 100px;
-  color: white;
-  text-shadow: 3px 3px 6px grey;
-}
-
-.home-main {
-  grid-area: home-main;
-  width: 600px;
-  color: grey;
-  font-size: 20px;
-  text-align: justify;
-  line-height: 1.5;
-  padding-bottom: 50px;
-}
-
-.home-grid-container {
-  display: grid;
-  grid-template-areas:
-  'home-header home-header'
-  'home-main home-panel';
-  justify-content: center;
-  background-color: #FFFFFF;
-  margin-top: -70px;
-  margin-bottom: 70px;
-}
-
-.home-grid-container > div {
-  font-size: 24px;
-  font-family: Ubuntu;
-}
-
-.apps-grid-container {
-  display: grid;
-  grid-template-areas:
-  'app-1 app-2 app-3';
-  grid-gap: 50px;
-  justify-content: center;
-  background-color: #FFFFFF;
-  padding-bottom: 200px;
-}
-
-.apps-grid-container > div {
-  font-family: Ubuntu;
+img.app-icon {
+  width: 150px;
+  height: 150px;
 }
 
 p.title {
@@ -186,25 +47,6 @@ a:hover {
 a:visited {
   color: grey;
   text-decoration: none;
-}
-
-img.logo {
-  margin-left: -20px;
-  margin-top: 2px;
-}
-
-img.icon {
-  width: 40px;
-  height: 40px;
-}
-
-img.home-panel {
-  width: 90%;
-}
-
-img.app-icon {
-  width: 150px;
-  height: 150px;
 }
 
 ul.menu {
@@ -292,6 +134,165 @@ li a:hover, .dropdown:hover .dropbtn {
   display: block;
 }
 
+.header {
+  grid-area: header;
+  width: 600px;
+  font-size: 50px;
+  text-align: left;
+}
+
+.main {
+  grid-area: main;
+  width: 600px;
+  color: grey;
+  font-size: 20px;
+  text-align: justify;
+  line-height: 1.5;
+  padding-bottom: 50px;
+}
+
+.footer {
+  grid-area: footer;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: grey;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: left;
+  border-top-style: solid;
+  border-color: lightgrey;
+  border-width: 1px;
+}
+
+.panel {
+  grid-area: panel;
+  width: 250px;
+  padding-top: 75px;
+  padding-left: 20px;
+}
+
+.home-header {
+  grid-area: home-header;
+  position: static;
+  padding-top: 88px;
+  text-align: left;
+  width: auto;
+}
+
+.home-header-text {
+  grid-area: home-header-text;
+  position: relative;
+  width: 80%;
+  font-size: 50px;
+  font-family: Ubuntu;
+  bottom: 250px;
+  left: 100px;
+  color: white;
+  text-shadow: 3px 3px 6px grey;
+}
+
+.home-main {
+  grid-area: home-main;
+  width: 600px;
+  color: grey;
+  font-size: 20px;
+  text-align: justify;
+  line-height: 1.5;
+  padding-bottom: 50px;
+}
+
+.home-panel {
+  grid-area: home-panel;
+  width: 200px;
+  margin-bottom: -30px;
+  margin-right: 20px;
+  padding-top: 7px;
+  padding-left: 40px;
+}
+
+.app-1 {
+  grid-area: app-1;
+  width: 200px;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.0;
+  padding-bottom: 50px;
+}
+
+.app-2 {
+  grid-area: app-2;
+  width: 200px;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.0;
+  padding-bottom: 50px;
+}
+
+.app-3 {
+  grid-area: app-3;
+  width: 200px;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.0;
+  padding-bottom: 50px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+  'header panel'
+  'main panel';
+  grid-gap: 20px;
+  justify-content: center;
+  background-color: #FFFFFF;
+  padding-top: 70px;
+  padding-bottom: 100px;
+  padding-left: 28px;
+}
+
+.grid-container > div {
+  font-family: Ubuntu;
+}
+
+.home-grid-container {
+  display: grid;
+  grid-template-areas:
+  'home-header home-header'
+  'home-main home-panel';
+  justify-content: center;
+  background-color: #FFFFFF;
+  margin-top: -70px;
+  margin-bottom: 70px;
+}
+
+.home-grid-container > div {
+  font-size: 24px;
+  font-family: Ubuntu;
+}
+
+.apps-grid-container {
+  display: grid;
+  grid-template-areas:
+  'app-1 app-2 app-3';
+  grid-gap: 50px;
+  justify-content: center;
+  background-color: #FFFFFF;
+  padding-bottom: 200px;
+}
+
+.apps-grid-container > div {
+  font-family: Ubuntu;
+}
+
+
 @media screen and (max-width:700px)  {
 
   img.logo {
@@ -304,6 +305,12 @@ li a:hover, .dropdown:hover .dropbtn {
 
 @media screen and (max-width:900px), (orientation: portrait)  {
 
+  img.home-panel {
+    width: 180px;
+    margin-top: 30px;
+    margin-bottom: -40px;
+  }
+
   p.title {
     color: black;
     font-weight: bold;
@@ -315,6 +322,38 @@ li a:hover, .dropdown:hover .dropbtn {
     padding-bottom: 12px;
   }
 
+  .home-header-container {
+    position: static;
+    text-align: left;
+    width: 100%;
+  }
+
+  .home-header {
+    width: 100%;
+    padding-top: 87px;
+  }
+
+  .home-header-text {
+    position: relative;
+    width: 70%;
+    font-size: 32px;
+    font-family: Ubuntu;
+    bottom: 140px;
+    left: 50px;
+    color: white;
+  }
+
+  .home-main {
+    grid-area: home-main;
+    width: auto;
+    margin: auto;
+    color: grey;
+    font-size: 12px;
+    text-align: justify;
+    line-height: 1.5;
+    padding-bottom: 10px;
+  }
+
   .header {
     width: auto;
     margin: auto;
@@ -324,10 +363,6 @@ li a:hover, .dropdown:hover .dropbtn {
   .main {
     width: auto;
     margin: auto;
-  }
-
-  .footer {
-    padding-top: 25px;
   }
 
   .panel {
@@ -349,10 +384,8 @@ li a:hover, .dropdown:hover .dropbtn {
     padding-right: 0px;
   }
 
-  img.home-panel {
-    width: 180px;
-    margin-top: 30px;
-    margin-bottom: -40px;
+  .footer {
+    padding-top: 25px;
   }
 
   .grid-container {
@@ -393,38 +426,6 @@ li a:hover, .dropdown:hover .dropbtn {
     justify-content: center;
     background-color: #FFFFFF;
     padding-bottom: 200px;
-  }
-
-  .home-header-container {
-    position: static;
-    text-align: left;
-    width: 100%;
-  }
-
-  .home-header {
-    width: 100%;
-    padding-top: 87px;
-  }
-
-  .home-header-text {
-    position: relative;
-    width: 70%;
-    font-size: 32px;
-    font-family: Ubuntu;
-    bottom: 140px;
-    left: 50px;
-    color: white;
-  }
-
-  .home-main {
-    grid-area: home-main;
-    width: auto;
-    margin: auto;
-    color: grey;
-    font-size: 12px;
-    text-align: justify;
-    line-height: 1.5;
-    padding-bottom: 10px;
   }
 
 }
