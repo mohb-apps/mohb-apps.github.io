@@ -39,7 +39,6 @@ img {
   border-top-style: solid;
   border-color: lightgrey;
   border-width: 1px;
-
 }
 
 .panel {
@@ -56,6 +55,39 @@ img {
   margin-right: 20px;
   padding-top: 7px;
   padding-left: 40px;
+}
+
+.app-1 {
+  grid-area: app-1;
+  width: 200px;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.0;
+  padding-bottom: 50px;
+}
+
+.app-2 {
+  grid-area: app-2;
+  width: 200px;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.0;
+  padding-bottom: 50px;
+}
+
+.app-3 {
+  grid-area: app-3;
+  width: 200px;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.0;
+  padding-bottom: 50px;
 }
 
 .grid-container {
@@ -121,6 +153,20 @@ img {
   font-family: Ubuntu;
 }
 
+.apps-grid-container {
+  display: grid;
+  grid-template-areas:
+  'app-1 app-2 app-3';
+  grid-gap: 50px;
+  justify-content: center;
+  background-color: #FFFFFF;
+  padding-bottom: 200px;
+}
+
+.apps-grid-container > div {
+  font-family: Ubuntu;
+}
+
 p.title {
   color: black;
   font-weight: bold;
@@ -154,6 +200,11 @@ img.icon {
 
 img.home-panel {
   width: 90%;
+}
+
+img.app-icon {
+  width: 150px;
+  height: 150px;
 }
 
 ul.menu {
@@ -327,9 +378,21 @@ li a:hover, .dropdown:hover .dropbtn {
     justify-content: center;
     background-color: #FFFFFF;
     padding-top: 0px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     padding-left: 50px;
     padding-right: 50px;
+  }
+
+  .apps-grid-container {
+    display: grid;
+    grid-template-areas:
+    'app-1'
+    'app-2'
+    'app-3';
+    grid-gap: 30px;
+    justify-content: center;
+    background-color: #FFFFFF;
+    padding-bottom: 200px;
   }
 
   .home-header-container {
