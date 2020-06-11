@@ -10,8 +10,8 @@ img {
 }
 
 img.logo {
+  width: 240px;
   margin-left: -20px;
-  margin-top: 2px;
 }
 
 img.icon {
@@ -71,7 +71,6 @@ li.menu {
   float: right;
   margin-left: -50px;
   margin-right: 70px;
-  margin-top: -2px;
 }
 
 li.dropdown {
@@ -79,9 +78,8 @@ li.dropdown {
   float: right;
   margin-left: -50px;
   margin-right: 70px;
-  margin-top: -2px;
-
 }
+
 li a, .dropbtn {
   display: block;
   color: black;
@@ -102,7 +100,7 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 .dropbtn {
-  padding-bottom: 10px;70px
+  padding-bottom: 10px;
   border: none;
   cursor: pointer;
 }
@@ -400,6 +398,7 @@ li a:hover, .dropdown:hover .dropbtn {
     background-color: #FFFFFF;
     padding: 40px;
   }
+
   .home-grid-container {
     display: grid;
     width: auto;
