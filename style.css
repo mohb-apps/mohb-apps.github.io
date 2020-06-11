@@ -267,8 +267,12 @@ li a:hover, .dropdown:hover .dropbtn {
   'home-main home-panel';
   justify-content: center;
   background-color: #FFFFFF;
-  margin-top: -70px;
-  margin-bottom: 70px;
+  margin-top: -50px;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom-style: solid;
+  border-color: lightgrey;
+  border-width: 1px;
 }
 
 .home-grid-container > div {
@@ -283,7 +287,8 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-gap: 50px;
   justify-content: center;
   background-color: #FFFFFF;
-  padding-bottom: 200px;
+  padding-top: 80px;
+  padding-bottom: 100px;
 }
 
 .apps-grid-container > div {
