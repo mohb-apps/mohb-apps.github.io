@@ -163,36 +163,42 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .home {
   grid-area: home;
+  display: grid;
   width: 100%;
   background-color: #159B15;
 }
 
 .apps {
   grid-area: apps;
+  display: grid;
   width: 100%;
   background-color: #159B15;
 }
 
 .lang {
   grid-area: lang;
+  display: grid;
   width: 100%;
   background-color: #159B15;
 }
 
 .github {
   grid-area: github;
+  display: grid;
   width: 100%;
   background-color: #159B15;
 }
 
 .twitter {
   grid-area: twitter;
+  display: grid;
   width: 100%;
   background-color: #159B15;
 }
 
 .email {
   grid-area: email;
+  display: grid;
   width: 100%;
   background-color: #159B15;
 }

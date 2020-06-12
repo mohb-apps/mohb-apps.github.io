@@ -28,6 +28,14 @@ img.app-icon {
   height: 150px;
 }
 
+img.social-icon {
+  display: inline;
+  float: right;
+  width: 24px;
+  height: 24px;
+  padding-left: 6px;
+}
+
 p.title {
   color: black;
   font-weight: bold;
@@ -243,6 +251,18 @@ li a:hover, .dropdown:hover .dropbtn {
   padding-bottom: 50px;
 }
 
+.attributions {
+  grid-area: attributions;
+  width: 80%;
+}
+
+.social {
+  grid-area: social;
+  float: right;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -293,6 +313,15 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .apps-grid-container > div {
   font-family: Ubuntu;
+}
+
+.footer-grid-container {
+  grid-area: footer;
+  display: grid;
+  grid-template-areas:
+  'attributions social';
+  grid-gap: 50px;
+  background-color: #FFFFFF;
 }
 
 
