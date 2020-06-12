@@ -148,7 +148,7 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: panel;
   width: auto;
   padding-top: 50px;
-  padding-bottom: 70px;
+  padding-bottom: 200px;
   padding-left: 70px;
   padding-right: 70px;
 }
