@@ -10,11 +10,21 @@ img {
 }
 
 img.logo {
+  display: inline;
   width: 50%;
   padding-top: 12px;
   margin-left: 10px;
   padding-bottom: 10px;
   border-bottom-style: none;
+}
+
+img.desktop {
+  display: inline;
+  float: right;
+  width: auto;
+  height: 50px;
+  padding-top: 32px;
+  margin-right: 32px;
 }
 
 img.icon {
