@@ -41,8 +41,9 @@ img.home-panel {
 
 p.title {
   color: black;
+  font-size: 52px;
   font-weight: bold;
-  line-height: 0.5;
+  line-height: 0.0;
 }
 
 a:link {
@@ -124,7 +125,6 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: header;
   width: auto;
   margin: auto;
-  font-size: 48px;
 }
 
 .main {
