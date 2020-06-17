@@ -269,7 +269,6 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
         }
         print BR_APP_INDEX $_;
       }
-      print BR_APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:60px;\">\n";
     }
   }
   close BR_APP_INDEX;

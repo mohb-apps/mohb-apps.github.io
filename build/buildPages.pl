@@ -22,9 +22,13 @@ my $projects_path       = $home_dir."/AndroidStudioProjects/";
 
 
 # Check if there is a br index file and finish script if not
-
 if (not -f $br_index_file) {
   die "There is no br/index.html file! Please, create one and run again.\n";
+}
+
+# Check if there is a br tools index file and finish script if not
+if (not -f $br_tools_index_file) {
+  die "There is no br/tools/index.html file! Please, create one and run again.\n";
 }
 
 
@@ -316,7 +320,7 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
         s/\/br\//\/br\/apps\/$apps_site_dirs[$i]\//g;
         print APP_INDEX $_;
       }
-      print APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:100px;\">\n";
+      print APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:80px;\">\n";
     }
   }
   close APP_INDEX;
@@ -343,7 +347,7 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
         }
         print BR_APP_INDEX $_;
       }
-      print BR_APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:60px;\">\n";
+      print BR_APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:80px;\">\n";
     }
   }
   close BR_APP_INDEX;
