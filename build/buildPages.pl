@@ -316,7 +316,7 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
         s/\/br\//\/br\/apps\/$apps_site_dirs[$i]\//g;
         print APP_INDEX $_;
       }
-      print APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:60px;\">\n";
+      print APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:100px;\">\n";
     }
   }
   close APP_INDEX;
