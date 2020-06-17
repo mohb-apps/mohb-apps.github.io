@@ -255,23 +255,25 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: attributions;
   margin-top: auto;
   margin-bottom: auto;
+  padding-right: 100px;
 }
 
-.android-atc {
-  grid-area: android-atc;
+.android-atc-logo {
+  grid-area: android-atc-logo;
+  float: right;
   width: 180px;
-  font-family: arial;
   margin-top: auto;
-  margin-bottom: auto;
-  padding-left: 320px;
+  margin-bottom: 0px;
+  margin-right: 0px;
 }
 
-.built-logos {
-  grid-area: built-logos;
+.android-atc-id {
+  grid-area: android-atc-id;
+  float: right;
   font-family: arial;
-  margin-top: auto;
+  margin-top: 0px;
   margin-bottom: auto;
-  padding-left: 100px;
+  margin-right: 0px;
 }
 
 .social {
@@ -279,6 +281,26 @@ li a:hover, .dropdown:hover .dropbtn {
   float: right;
   margin-top: auto;
   margin-bottom: auto;
+  margin-left: 0px;
+  padding-left: 100px;
+}
+
+.built-text {
+  grid-area: built-text;
+  float: right;
+  font-family: arial;
+  margin-top: auto;
+  margin-bottom: 0px;;
+  margin-right: 0px;
+  padding-bottom: 12px;
+}
+
+.built-logos {
+  grid-area: built-logos;
+  float: right;
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-right: 0px;
 }
 
 .elementary_logo {
@@ -387,8 +409,10 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: footer-grid-container;
   display: grid;
   grid-template-areas:
-  'attributions android-atc social';
-  grid-gap: 50px;
+  'attributions android-atc-logo social'
+  'attributions android-atc-id social';
+  grid-template-columns: auto 180px 180px;
+  grid-gap: 0px;
   background-color: #FFFFFF;
 }
 
@@ -396,7 +420,9 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: tools-footer-grid-container;
   display: grid;
   grid-template-areas:
+  'attributions built-text'
   'attributions built-logos';
-  grid-gap: 50px;
+  grid-template-columns: auto 200px;
+  grid-gap: 0px;
   background-color: #FFFFFF;
 }

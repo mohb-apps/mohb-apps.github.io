@@ -2,7 +2,7 @@
 
 #
 #  File          : buildPages.pl
-#  Last modified : 12/06/20 11:49 PM
+#  Last modified : 06/17/20 6:54 PM
 #
 #  Developer     : Haraldo Albergaria Filho, a.k.a. mohb apps
 #
@@ -17,6 +17,16 @@ my $pages_root_path     = $home_dir."/GitHubPages/".$repository_name."/m/";
 my $root_index_file     = $pages_root_path."index.html";
 my $br_index_file       = $pages_root_path."br/index.html";
 my $projects_path       = $home_dir."/AndroidStudioProjects/";
+
+
+# Check if there is a br index file and finish script if not
+
+if (not -f $br_index_file) {
+  die "There is no br/index.html file! Please, create one and run again.\n";
+}
+
+
+# Extract apps names and directories from root index file
 
 open ROOT_INDEX, "$root_index_file" or die "Can't open $root_index_file to read: $!\n";
 my @index_file_lines = <ROOT_INDEX>;
@@ -41,6 +51,131 @@ foreach (@apps) {
   push(@apps_proj_dirs, $proj_dir);
   push(@apps_site_dirs, $site_dir);
 }
+
+
+# Extract menu from root index file
+
+my $copy = 0;
+my @menu;
+
+foreach (@index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $copy = 1;
+  }
+  if ($copy == 1) {
+    push (@menu, $_);
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $copy = 0;
+  }
+}
+
+
+# Create br menu
+
+my @br_menu = @menu;
+
+foreach (@br_menu) {
+  s/contact/contato/g;
+  s/.io\/m/.io\/m\/br/g;
+  s/br\/br\///g;
+  s/portuguese.png/english.png/g;
+  s/title="ver\sem\sportuguês"/title="view in english"/g;
+  s/alt="português"/alt="english"/g;
+  s/title="send\sa\smessage"/title="envie uma mensagem"/g;
+}
+
+
+# Update menu and apps on br home page but keep header, main info and footer
+
+open BR_INDEX, "$br_index_file" or die "Can't open $br_index_file to read: $!\n";
+my @br_index_file_lines = <BR_INDEX>;
+close BR_INDEX;
+
+open BR_INDEX, ">$br_index_file" or die "Can't open $br_index_file to read: $!\n";
+
+my $print_en = 1;
+my $print_br = 0;
+my $print_br_menu = 0;
+
+foreach (@index_file_lines) {
+
+  s/style.css/..\/style.css/g;
+  s/.io\/apps/.io\/br\/apps/g;
+
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $print_br_menu = 1;
+    $print_en = 0;
+    $print_br = 0;
+    foreach $menu_line (@br_menu) {
+      print BR_INDEX $menu_line;
+    }
+  }
+
+  if ( m/class="home-header"/ ) {
+    $print_en = 0;
+    foreach $br (@br_index_file_lines) {
+      if ( $br =~ m/class="home-header"/ ) {
+        $print_br = 1;
+      }
+      if ($print_br == 1) {
+        print BR_INDEX $br;
+      }
+      if ( $br =~ m/ <\/div>/ ) {
+        $print_br = 0;
+      }
+    }
+  }
+
+  if ( m/class="home-main"/ ) {
+    $print_en = 0;
+    foreach $br (@br_index_file_lines) {
+      if ( $br =~ m/class="home-main"/ ) {
+        $print_br = 1;
+      }
+      if ($print_br == 1) {
+        print BR_INDEX $br;
+      }
+      if ( $br =~ m/ <\/div>/ ) {
+        $print_br = 0;
+      }
+    }
+  }
+
+  if ( m/class="footer"/ ) {
+    $print_en = 0;
+    foreach $br (@br_index_file_lines) {
+      if ( $br =~ m/class="footer"/ ) {
+        $print_br = 1;
+      }
+      if ($print_br == 1) {
+        print BR_INDEX $br;
+      }
+      if ( $br =~ m/ <\/div>/ ) {
+        $print_br = 0;
+      }
+    }
+  }
+
+  if ($print_en == 1) {
+    print BR_INDEX $_;
+  }
+
+  if ( m/<!--\send\s-->/ ) {
+    $print_br_menu = 0;
+    $print_en = 1;
+  }
+
+  if ($print_br_menu == 0) {
+    if ( m/ <\/div>/ ) {
+      $print_en = 1;
+    }
+  }
+
+}
+
+
+# Create directories structure for apps
 
 chdir "$pages_root_path";
 
@@ -67,37 +202,28 @@ foreach (@apps_site_dirs) {
 
 chdir "../";
 
-if (not -f $br_index_file) {
-  die "There is no br/index.html file! Please, create one and run again.\n";
-}
+
+# Copy english content to br directory
 
 system "cp -r apps br/";
 system "cp -r res br/";
 
-my $copy = 0;
-my @menu;
 
-foreach (@index_file_lines) {
-  if ( m/<!--\sTop Menu\s-->/ ) {
-    $copy = 1;
-  }
-  if ($copy == 1) {
-    s/res\//..\/..\/res\//;
-    push (@menu, $_);
-  }
-  if ( m/<!--\send\s-->/ ) {
-    $copy = 0;
-  }
-}
+# For each app...
 
 for (my $i = 0; $i < @apps_proj_dirs; $i++) {
 
   my @menu = @menu;
+  my @br_menu = @br_menu;
+
+  # ... copy content from app's repository
 
   system "cp $projects_path/$apps_proj_dirs[$i]/docs/index.html apps/$apps_site_dirs[$i]/";
   system "cp $projects_path/$apps_proj_dirs[$i]/docs/res/img/* apps/$apps_site_dirs[$i]/res/img/";
   system "cp $projects_path/$apps_proj_dirs[$i]/docs/br/index.html br/apps/$apps_site_dirs[$i]/";
   system "cp $projects_path/$apps_proj_dirs[$i]/docs/br/res/img/* br/apps/$apps_site_dirs[$i]/res/img/";
+
+  # ... add menu to app page
 
   $app_index_file = "apps/".$apps_site_dirs[$i]."/index.html";
 
@@ -112,117 +238,41 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
     if ( m/<body>/ ) {
       print APP_INDEX "\n";
       foreach (@menu) {
+        s/res\/icons\//..\/..\/res\/icons\//g;
+        s/res\/img\/logo.png/..\/..\/res\/img\/logo.png/g;
         s/\/br\//\/br\/apps\/$apps_site_dirs[$i]\//g;
         print APP_INDEX $_;
       }
+      print APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:60px;\">\n";
     }
   }
   close APP_INDEX;
 
+  # ... add menu to br page
+
   $app_index_file = "br/apps/".$apps_site_dirs[$i]."/index.html";
 
-  open APP_INDEX_BR, "$app_index_file" or die "Can't open $app_index_file to read: $!\n";
-  my @app_index_file_lines = <APP_INDEX_BR>;
-  close APP_INDEX_BR;
+  open BR_APP_INDEX, "$app_index_file" or die "Can't open $app_index_file to read: $!\n";
+  my @app_index_file_lines = <BR_APP_INDEX>;
+  close BR_APP_INDEX;
 
-  open APP_INDEX_BR, ">$app_index_file" or die "Can't open $app_index_file to read: $!\n";
+  open BR_APP_INDEX, ">$app_index_file" or die "Can't open $app_index_file to read: $!\n";
   foreach (@app_index_file_lines) {
     s/style.css/..\/..\/style.css/g;
-    print APP_INDEX_BR $_;
+    print BR_APP_INDEX $_;
     if ( m/<body>/ ) {
-      print APP_INDEX_BR "\n";
-      foreach (@menu) {
-        s/contact/contato/g;
-        s/.io\/m\//.io\/m\/br\//g;
-        s/br\/br\///g;
-        s/portuguese.png/english.png/g;
-        s/alt="português"/alt="english"/g;
-        print APP_INDEX_BR $_;
+      print BR_APP_INDEX "\n";
+      foreach (@br_menu) {
+        s/res\/icons\//..\/..\/res\/icons\//g;
+        s/res\/img\/logo.png/..\/..\/res\/img\/logo.png/g;
+        if ( m/english/ ) {
+          s/.io\/m\//.io\/m\/apps\/$apps_site_dirs[$i]\//g;
+        }
+        print BR_APP_INDEX $_;
       }
+      print BR_APP_INDEX "\n  <div style=\"background-color:#ffffff;margin-top:60px;\">\n";
     }
   }
-  close APP_INDEX_BR;
+  close BR_APP_INDEX;
 
 }
-
-$br_index_orig_file = $pages_root_path."br/index.html";
-
-open INDEX_BR, "$br_index_file" or die "Can't open $br_index_file to read: $!\n";
-my @br_index_file_lines = <INDEX_BR>;
-close INDEX_BR;
-
-open INDEX_BR, ">$br_index_file" or die "Can't open $br_index_file to read: $!\n";
-
-my $print_en = 1;
-my $print_br = 0;
-
-foreach $en (@index_file_lines) {
-  if ( $en =~ m/class="home-header"/ ) {
-    $print_en = 0;
-    foreach $br (@br_index_file_lines) {
-      if ( $br =~ m/class="home-header"/ ) {
-        $print_br = 1;
-      }
-      if ($print_br == 1) {
-        print INDEX_BR $br;
-      }
-      if ( $br =~ m/ <\/div>/ ) {
-        $print_br = 0;
-      }
-    }
-  }
-  if ( $en =~ m/class="home-main"/ ) {
-    $print_en = 0;
-    foreach $br (@br_index_file_lines) {
-      if ( $br =~ m/class="home-main"/ ) {
-        $print_br = 1;
-      }
-      if ($print_br == 1) {
-        print INDEX_BR $br;
-      }
-      if ( $br =~ m/ <\/div>/ ) {
-        $print_br = 0;
-      }
-    }
-  }
-  if ( $en =~ m/class="footer"/ ) {
-    $print_en = 0;
-    foreach $br (@br_index_file_lines) {
-      if ( $br =~ m/class="footer"/ ) {
-        $print_br = 1;
-      }
-      if ($print_br == 1) {
-        print INDEX_BR $br;
-      }
-      if ( $br =~ m/ <\/div>/ ) {
-        $print_br = 0;
-      }
-    }
-  }
-  if ($print_en == 1) {
-    print INDEX_BR $en;
-  }
-  if ( $en =~ m/ <\/div>/ ) {
-    $print_en = 1;
-  }
-
-}
-
-open INDEX_BR, "$br_index_file" or die "Can't open $br_index_file to read: $!\n";
-my @br_index_file_lines = <INDEX_BR>;
-close INDEX_BR;
-
-open INDEX_BR, ">$br_index_file" or die "Can't open $br_index_file to read: $!\n";
-
-foreach (@br_index_file_lines) {
-  s/style.css/..\/style.css/g;
-  s/..\/..\/res/res/g;
-  s/contact/contato/g;
-  s/.io\/m\//.io\/m\/br\//g;
-  s/br\/br\///g;
-  s/.io\/"><img class="desktop"/.io\/br\/"><img class="desktop"/g;
-  s/portuguese.png/english.png/g;
-  s/alt="português"/alt="english"/g;
-  print INDEX_BR $_;
-}
-close INDEX_BR;

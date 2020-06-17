@@ -18,15 +18,6 @@ img.logo {
   border-bottom-style: none;
 }
 
-img.desktop {
-  display: inline;
-  float: right;
-  width: auto;
-  height: 50px;
-  padding-top: 32px;
-  margin-right: 32px;
-}
-
 img.icon {
   width: auto;
   height: 100px;
