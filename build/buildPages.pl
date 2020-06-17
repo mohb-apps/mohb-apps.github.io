@@ -16,6 +16,8 @@ my $repository_name     = "mohb-apps.github.io";
 my $pages_root_path     = $home_dir."/GitHubPages/".$repository_name."/";
 my $root_index_file     = $pages_root_path."index.html";
 my $br_index_file       = $pages_root_path."br/index.html";
+my $tools_index_file    = $pages_root_path."tools/index.html";
+my $br_tools_index_file = $pages_root_path."br/tools/index.html";
 my $projects_path       = $home_dir."/AndroidStudioProjects/";
 
 open ROOT_INDEX, "$root_index_file" or die "Can't open $root_index_file to read: $!\n";
@@ -227,7 +229,104 @@ foreach (@br_index_file_lines) {
   s/br\/br\///g;
   s/br\/m/m\/br/g;
   s/portuguese.png/english.png/g;
+  s/title="veja\sem\sportuguês"/title="view in english"/g;
   s/alt="português"/alt="english"/g;
   print INDEX_BR $_;
 }
 close INDEX_BR;
+
+open ROOT_INDEX, "$root_index_file" or die "Can't open $root_index_file to read: $!\n";
+my @index_file_lines = <ROOT_INDEX>;
+close ROOT_INDEX;
+
+my $copy = 0;
+my @menu;
+
+foreach (@index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $copy = 1;
+  }
+  if ($copy == 1) {
+    s/res\//..\/..\/res\//;
+    if (m/portuguese/) {
+      s/.io\/br\//.io\/br\/tools\//g;
+    }
+    push (@menu, $_);
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $copy = 0;
+  }
+}
+
+open TOOLS_INDEX, "$tools_index_file" or die "Can't open $tools_index_file to read: $!\n";
+my @tools_index_file_lines = <TOOLS_INDEX>;
+close TOOLS_INDEX;
+
+my $print_menu = 0;
+
+open TOOLS_INDEX, ">$tools_index_file" or die "Can't open $tools_index_file to read: $!\n";
+foreach (@tools_index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $print_menu = 1;
+    foreach (@menu) {
+      s/..\/..\/res/..\/res/g;
+      print TOOLS_INDEX $_;
+    }
+  }
+  if ($print_menu == 0) {
+    print TOOLS_INDEX $_;
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $print_menu = 0;
+  }
+
+}
+close TOOLS_INDEX;
+
+open BR_INDEX, "$br_index_file" or die "Can't open $br_index_file to read: $!\n";
+my @index_file_lines = <BR_INDEX>;
+close BR_INDEX;
+
+my $copy = 0;
+my @menu;
+
+foreach (@index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $copy = 1;
+  }
+  if ($copy == 1) {
+    s/res\//..\/..\/res\//;
+    if (m/english/) {
+      s/.io\//.io\/tools\//g;
+    }
+    push (@menu, $_);
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $copy = 0;
+  }
+}
+
+open TOOLS_INDEX, "$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
+my @tools_index_file_lines = <TOOLS_INDEX>;
+close TOOLS_INDEX;
+
+my $print_menu = 0;
+
+open TOOLS_INDEX, ">$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
+foreach (@tools_index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $print_menu = 1;
+    foreach (@menu) {
+      s/..\/..\/res/..\/res/g;
+      print TOOLS_INDEX $_;
+    }
+  }
+  if ($print_menu == 0) {
+    print TOOLS_INDEX $_;
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $print_menu = 0;
+  }
+
+}
+close TOOLS_INDEX;
