@@ -266,11 +266,55 @@ li a:hover, .dropdown:hover .dropbtn {
   padding-left: 320px;
 }
 
+.built-logos {
+  grid-area: built-logos;
+  font-family: arial;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 100px;
+}
+
 .social {
   grid-area: social;
   float: right;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.elementary_logo {
+  grid-area: elementary_logo;
+  margin: auto;
+  width: 500px;
+}
+
+.android-studio_logo {
+  grid-area: android-studio_logo;
+  margin: auto;
+  width: 500px;
+
+}
+
+.java_logo {
+  grid-area: java_logo;
+  margin: auto;
+  width: 75px;
+}
+
+.gimp_logo {
+  grid-area: gimp_logo;
+  margin: auto;
+  width: 150px;
+}
+
+.git_logo {
+  grid-area: git_logo;
+  margin: auto;
+  width: 150px;
+}
+.github_logo {
+  grid-area: github_logo;
+  margin: auto;
+  width: 150px;
 }
 
 .grid-container {
@@ -325,11 +369,34 @@ li a:hover, .dropdown:hover .dropbtn {
   font-family: Ubuntu;
 }
 
+.tools-grid-container {
+  display: grid;
+  grid-template-areas:
+  'elementary_logo elementary_logo'
+  'android-studio_logo android-studio_logo'
+  'java_logo gimp_logo'
+  'git_logo github_logo';
+  grid-gap: 100px;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  margin: auto;
+}
+
 .footer-grid-container {
-  grid-area: footer;
+  grid-area: footer-grid-container;
   display: grid;
   grid-template-areas:
   'attributions android-atc social';
+  grid-gap: 50px;
+  background-color: #FFFFFF;
+}
+
+.tools-footer-grid-container {
+  grid-area: tools-footer-grid-container;
+  display: grid;
+  grid-template-areas:
+  'attributions built-logos';
   grid-gap: 50px;
   background-color: #FFFFFF;
 }
