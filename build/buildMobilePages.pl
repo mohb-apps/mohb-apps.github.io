@@ -110,7 +110,7 @@ foreach (@tools_index_file_lines) {
     foreach (@tools_menu) {
       s/res\//..\/res\//;
       if (m/português/) {
-        s/.io\/br\//.io\/br\/tools\//g;
+        s/.io\/m\/br\//.io\/m\/br\/tools\//g;
       }
       print TOOLS_INDEX $_;
     }
@@ -231,7 +231,7 @@ foreach (@br_tools_index_file_lines) {
     foreach (@br_tools_menu) {
       s/res/..\/res/g;
       if (m/english/) {
-        s/.io\//.io\/tools\//g;
+        s/.io\/m\//.io\/m\/tools\//g;
       }
       print BR_TOOLS_INDEX $_;
     }

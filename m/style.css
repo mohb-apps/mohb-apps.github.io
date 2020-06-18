@@ -23,7 +23,7 @@ img.lang {
   float: right;
   width: 52px;
   height: 52px;
-  padding: 25px;
+  margin: 25px;
 }
 
 img.icon {
