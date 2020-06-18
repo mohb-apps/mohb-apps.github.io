@@ -166,7 +166,7 @@ li a:hover, .dropdown:hover .dropbtn {
   color: grey;
   font-size: 10px;
   line-height: 1.2;
-  text-align: left;
+  text-align: justify;
   border-top-style: solid;
   border-color: lightgrey;
   border-width: 1px;
@@ -255,7 +255,7 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: attributions;
   margin-top: auto;
   margin-bottom: auto;
-  padding-right: 100px;
+  padding-right: 300px;
 }
 
 .android-atc-logo {
@@ -333,6 +333,7 @@ li a:hover, .dropdown:hover .dropbtn {
   margin: auto;
   width: 150px;
 }
+
 .github_logo {
   grid-area: github_logo;
   margin: auto;
