@@ -21,10 +21,10 @@ img.logo {
 img.lang {
   display: inline;
   float: right;
-  width: 40px;
-  height: 40px;
-  padding-top: 20px;
-  padding-right: 20px;
+  width: 52px;
+  height: 52px;
+  padding-top: 24px;
+  padding-right: 24px;
 }
 
 img.icon {
@@ -41,38 +41,38 @@ img.home-panel {
 
 img.elementary_logo {
   margin: auto;
-  width: 300px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  width: 60%;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 img.android-studio_logo {
   margin: auto;
-  width: 300px;
-  padding-bottom: 50px;
+  width: 60%;
+  padding-bottom: 60px;
 }
 
 img.java_logo {
   margin: auto;
-  width: 75px;
-  padding-bottom: 50px;
+  width: 12%;
+  padding-bottom: 60px;
 }
 
 img.gimp_logo {
   margin: auto;
-  width: 100px;
-  padding-bottom: 50px;
+  width: 20%;
+  padding-bottom: 60px;
 }
 
 img.git_logo {
   margin: auto;
-  width: 100px;
-  padding-bottom: 50px;
+  width: 20%;
+  padding-bottom: 65px;
 }
 
 img.github_logo {
   margin: auto;
-  width: 100px;
+  width: 20%;
   padding-bottom: 150px;
 }
 

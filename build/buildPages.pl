@@ -87,10 +87,12 @@ foreach (@br_menu) {
   s/br\/br\///g;
   s/portuguese.png/english.png/g;
   s/title="ver\sem\sportuguês"/title="view in english"/g;
-  s/alt="português"/alt="english"/g;
   s/title="send\sa\smessage"/title="envie uma mensagem"/g;
   s/title="development\stools"/title="ferramentas de desenvolvimento"/g;
+  s/alt="home"/alt="início"/g;
+  s/alt="apps"/alt="aplicativos"/g;
   s/alt="tools"/alt="ferramentas"/g;
+  s/alt="português"/alt="english"/g;
 }
 
 

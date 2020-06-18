@@ -16,13 +16,19 @@ my $repository_name     = "mohb-apps.github.io";
 my $pages_root_path     = $home_dir."/GitHubPages/".$repository_name."/m/";
 my $root_index_file     = $pages_root_path."index.html";
 my $br_index_file       = $pages_root_path."br/index.html";
+my $tools_index_file    = $pages_root_path."tools/index.html";
+my $br_tools_index_file = $pages_root_path."br/tools/index.html";
 my $projects_path       = $home_dir."/AndroidStudioProjects/";
 
 
 # Check if there is a br index file and finish script if not
-
 if (not -f $br_index_file) {
   die "There is no br/index.html file! Please, create one and run again.\n";
+}
+
+# Check if there is a br tools index file and finish script if not
+if (not -f $br_tools_index_file) {
+  die "There is no br/tools/index.html file! Please, create one and run again.\n";
 }
 
 
@@ -80,10 +86,44 @@ foreach (@br_menu) {
   s/.io\/m/.io\/m\/br/g;
   s/br\/br\///g;
   s/portuguese.png/english.png/g;
-  s/title="ver\sem\sportuguês"/title="view in english"/g;
+  s/alt="home"/alt="início"/g;
+  s/alt="apps"/alt="aplicativos"/g;
+  s/alt="tools"/alt="ferramentas"/g;
   s/alt="português"/alt="english"/g;
-  s/title="send\sa\smessage"/title="envie uma mensagem"/g;
 }
+
+
+# Update menu on root tools page
+
+my @tools_menu = @menu;
+
+open TOOLS_INDEX, "$tools_index_file" or die "Can't open $tools_index_file to read: $!\n";
+my @tools_index_file_lines = <TOOLS_INDEX>;
+close TOOLS_INDEX;
+
+my $print_menu = 0;
+
+open TOOLS_INDEX, ">$tools_index_file" or die "Can't open $tools_index_file to read: $!\n";
+foreach (@tools_index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $print_menu = 1;
+    foreach (@tools_menu) {
+      s/res\//..\/res\//;
+      if (m/português/) {
+        s/.io\/br\//.io\/br\/tools\//g;
+      }
+      print TOOLS_INDEX $_;
+    }
+  }
+  if ($print_menu == 0) {
+    print TOOLS_INDEX $_;
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $print_menu = 0;
+  }
+
+}
+close TOOLS_INDEX;
 
 
 # Update menu and apps on br home page but keep header, main info and footer
@@ -173,6 +213,38 @@ foreach (@index_file_lines) {
   }
 
 }
+
+
+# Update menu on br tools page
+
+open BR_TOOLS_INDEX, "$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
+my @br_tools_index_file_lines = <BR_TOOLS_INDEX>;
+close BR_TOOLS_INDEX;
+
+my @br_tools_menu = @br_menu;
+my $print_menu = 0;
+
+open BR_TOOLS_INDEX, ">$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
+foreach (@br_tools_index_file_lines) {
+  if ( m/<!--\sTop Menu\s-->/ ) {
+    $print_menu = 1;
+    foreach (@br_tools_menu) {
+      s/res/..\/res/g;
+      if (m/english/) {
+        s/.io\//.io\/tools\//g;
+      }
+      print BR_TOOLS_INDEX $_;
+    }
+  }
+  if ($print_menu == 0) {
+    print BR_TOOLS_INDEX $_;
+  }
+  if ( m/<!--\send\s-->/ ) {
+    $print_menu = 0;
+  }
+
+}
+close BR_TOOLS_INDEX;
 
 
 # Create directories structure for apps
