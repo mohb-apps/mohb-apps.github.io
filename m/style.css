@@ -297,7 +297,7 @@ li a:hover, .dropdown:hover .dropbtn {
 .android-atc-logo {
   grid-area: android-atc-logo;
   float: left;
-  width: auto;
+  width: 60%;
   margin-top: auto;
   margin-bottom: 0px;
   margin-right: 0px;
@@ -307,7 +307,7 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-area: android-atc-id;
   float: left;
   font-family: arial;
-  font-size: 10px;
+  font-size: 9px;
   margin-top: 5px;
   margin-bottom: auto;
   margin-right: 0px;
@@ -319,8 +319,7 @@ li a:hover, .dropdown:hover .dropbtn {
   float: right;
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 0px;
-  padding-left: 100px;
+  margin-left: 100px;
 }
 
 .menu-grid-container {
@@ -383,7 +382,7 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-template-areas:
   'android-atc-logo social'
   'android-atc-id social';
-  grid-template-columns: 180px auto;
+  grid-template-columns: auto 300px;
   grid-gap: 0px;
   padding-bottom: 20px;
   background-color: #FFFFFF;
