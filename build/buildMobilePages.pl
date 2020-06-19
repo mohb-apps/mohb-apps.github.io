@@ -11,15 +11,14 @@
 #
 #  --------------------------------------------------------------
 
-my $home_dir            = $ENV{'HOME'};
-my $repository_name     = "mohb-apps.github.io";
-my $pages_root_path     = $home_dir."/GitHubPages/".$repository_name."/m/";
-my $root_index_file     = $pages_root_path."index.html";
-my $br_index_file       = $pages_root_path."br/index.html";
-my $tools_index_file    = $pages_root_path."tools/index.html";
-my $br_tools_index_file = $pages_root_path."br/tools/index.html";
-my $projects_path       = $home_dir."/AndroidStudioProjects/";
+my $pages_root_path     = "../m/";
+my $root_index_file     = "index.html";
+my $br_index_file       = "br/index.html";
+my $tools_index_file    = "tools/index.html";
+my $br_tools_index_file = "br/tools/index.html";
+my $projects_path       = "../../../AndroidStudioProjects/";
 
+chdir $pages_root_path;
 
 # Check if there is a br index file and finish script if not
 if (not -f $br_index_file) {
@@ -246,11 +245,9 @@ foreach (@br_tools_index_file_lines) {
 }
 close BR_TOOLS_INDEX;
 
-
-# Create directories structure for apps
-
 chdir "$pages_root_path";
 
+# Create directories structure for apps
 if (not -e "apps") {
   system "mkdir apps";
 }
@@ -274,11 +271,11 @@ foreach (@apps_site_dirs) {
 
 chdir "../";
 
-
 # Copy english content to br directory
-
 system "cp -r apps br/";
 system "cp -r res br/";
+
+chdir "../build";
 
 
 # For each app...
@@ -290,14 +287,14 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
 
   # ... copy content from app's repository
 
-  system "cp $projects_path/$apps_proj_dirs[$i]/docs/index.html apps/$apps_site_dirs[$i]/";
-  system "cp $projects_path/$apps_proj_dirs[$i]/docs/res/img/* apps/$apps_site_dirs[$i]/res/img/";
-  system "cp $projects_path/$apps_proj_dirs[$i]/docs/br/index.html br/apps/$apps_site_dirs[$i]/";
-  system "cp $projects_path/$apps_proj_dirs[$i]/docs/br/res/img/* br/apps/$apps_site_dirs[$i]/res/img/";
+  system "cp $projects_path/$apps_proj_dirs[$i]/docs/index.html $pages_root_path/apps/$apps_site_dirs[$i]/";
+  system "cp $projects_path/$apps_proj_dirs[$i]/docs/res/img/* $pages_root_path/apps/$apps_site_dirs[$i]/res/img/";
+  system "cp $projects_path/$apps_proj_dirs[$i]/docs/br/index.html $pages_root_path/br/apps/$apps_site_dirs[$i]/";
+  system "cp $projects_path/$apps_proj_dirs[$i]/docs/br/res/img/* $pages_root_path/br/apps/$apps_site_dirs[$i]/res/img/";
 
   # ... add menu to app page
 
-  $app_index_file = "apps/".$apps_site_dirs[$i]."/index.html";
+  $app_index_file = "$pages_root_path/apps/".$apps_site_dirs[$i]."/index.html";
 
   open APP_INDEX, "$app_index_file" or die "Can't open $app_index_file to read: $!\n";
   my @app_index_file_lines = <APP_INDEX>;
@@ -321,7 +318,7 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
 
   # ... add menu to br page
 
-  $app_index_file = "br/apps/".$apps_site_dirs[$i]."/index.html";
+  $app_index_file = "$pages_root_path/br/apps/".$apps_site_dirs[$i]."/index.html";
 
   open BR_APP_INDEX, "$app_index_file" or die "Can't open $app_index_file to read: $!\n";
   my @app_index_file_lines = <BR_APP_INDEX>;
