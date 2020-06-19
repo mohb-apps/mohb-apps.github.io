@@ -284,8 +284,8 @@ li a:hover, .dropdown:hover .dropbtn {
 .home-panel {
   grid-area: home-panel;
   margin: auto;
-  margin-top: -200px;
-  margin-bottom: 60px;
+  margin-top: -100px;
+  margin-bottom: 70px;
 
 }
 
