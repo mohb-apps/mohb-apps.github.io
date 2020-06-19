@@ -32,6 +32,14 @@ img.icon {
   padding: 10px;
 }
 
+img.social-icon {
+  display: inline;
+  float: right;
+  width: 50px;
+  height: 50px;
+  padding-left: 20px;
+}
+
 img.home-panel {
   width: 40%;
   margin-top: -20px;
@@ -286,6 +294,35 @@ li a:hover, .dropdown:hover .dropbtn {
   padding-bottom: 70px;
 }
 
+.android-atc-logo {
+  grid-area: android-atc-logo;
+  float: left;
+  width: auto;
+  margin-top: auto;
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+
+.android-atc-id {
+  grid-area: android-atc-id;
+  float: left;
+  font-family: arial;
+  font-size: 10px;
+  margin-top: 5px;
+  margin-bottom: auto;
+  margin-right: 0px;
+}
+
+.social {
+  grid-area: social;
+  display: inline;
+  float: right;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0px;
+  padding-left: 100px;
+}
+
 .menu-grid-container {
   display: grid;
   width: auto;
@@ -338,4 +375,16 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .grid-container > div {
   font-family: Ubuntu;
+}
+
+.footer-grid-container {
+  grid-area: footer-grid-container;
+  display: grid;
+  grid-template-areas:
+  'android-atc-logo social'
+  'android-atc-id social';
+  grid-template-columns: 180px auto;
+  grid-gap: 0px;
+  padding-bottom: 20px;
+  background-color: #FFFFFF;
 }

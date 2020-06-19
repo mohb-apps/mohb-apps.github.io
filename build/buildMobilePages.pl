@@ -42,7 +42,7 @@ my @apps_proj_dirs;
 my @apps_site_dirs;
 
 foreach (@index_file_lines) {
-  if ( m/<a\shref=\"https:\/\/mohb-apps\.github\.io\/m\/apps\/.+\/\">(.+)<\/a>\n/ ) {
+  if ( m/<a\shref=\"https:\/\/mohb-apps\.github\.io\/m\/apps\/.+\/\">(.+)<\/a>[^<]/ ) {
     push(@apps, $1);
   }
 }
