@@ -146,6 +146,7 @@ foreach (@index_file_lines) {
   s/src="js\//src="..\/js\//g;
   s/.io\/m/.io\/m\/br/g;
   s/.io\/apps/.io\/br\/apps/g;
+  s/Personal\sWebsite/Website Pessoal/g;
 
   if ( m/<!--\sTop Menu\s-->/ ) {
     $print_br_menu = 1;
