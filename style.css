@@ -282,7 +282,6 @@ li a:hover, .dropdown:hover .dropbtn {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 0px;
-  padding-left: 100px;
 }
 
 .built-text {
@@ -412,7 +411,7 @@ li a:hover, .dropdown:hover .dropbtn {
   grid-template-areas:
   'attributions android-atc-logo social'
   'attributions android-atc-id social';
-  grid-template-columns: auto 180px 180px;
+  grid-template-columns: auto 180px 240px;
   grid-gap: 0px;
   background-color: #FFFFFF;
 }
