@@ -167,7 +167,7 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .main {
   grid-area: main;
-  width: auto;
+  width: 100%;
   margin: auto;
   max-width: 1024px;
   color: grey;
