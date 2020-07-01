@@ -76,6 +76,24 @@ foreach (@index_file_lines) {
 }
 
 
+# Extract Statcounter code from index file
+
+my $copy = 0;
+my @stats_code;
+
+foreach (@index_file_lines) {
+  if ( m/<!--\sDefault\sStatcounter\scode/ ) {
+    $copy = 1;
+  }
+  if ($copy == 1) {
+    push (@stats_code, $_);
+  }
+  if ( m/<!--\sEnd\sof\sStatcounter\sCode/ ) {
+    $copy = 0;
+  }
+}
+
+
 # Create br menu
 
 my @br_menu = @menu;
@@ -95,7 +113,7 @@ foreach (@br_menu) {
 }
 
 
-# Update menu on root tools page
+# Update menu and stats code on root tools page
 
 my @tools_menu = @menu;
 
@@ -104,9 +122,16 @@ my @tools_index_file_lines = <TOOLS_INDEX>;
 close TOOLS_INDEX;
 
 my $print_menu = 0;
+my $print_stats_code = 1;
 
 open TOOLS_INDEX, ">$tools_index_file" or die "Can't open $tools_index_file to read: $!\n";
 foreach (@tools_index_file_lines) {
+  if (( m/<\/body>/ ) && ( $print_stats_code == 1 )){
+    foreach (@stats_code) {
+      print TOOLS_INDEX $_;
+    }
+    print TOOLS_INDEX "\n";
+  }
   if ( m/<!--\sTop Menu\s-->/ ) {
     $print_menu = 1;
     foreach (@tools_menu) {
@@ -123,12 +148,14 @@ foreach (@tools_index_file_lines) {
   if ( m/<!--\send\s-->/ ) {
     $print_menu = 0;
   }
-
+  if ( m/<!--\sDefault\sStatcounter\scode/ ) {
+    $print_stats_code = 0;
+  }
 }
 close TOOLS_INDEX;
 
 
-# Update menu and apps on br home page but keep header, main info and footer
+# Update menu, stats code and apps on br home page but keep header, main info and footer
 
 open BR_INDEX, "$br_index_file" or die "Can't open $br_index_file to read: $!\n";
 my @br_index_file_lines = <BR_INDEX>;
@@ -139,6 +166,7 @@ open BR_INDEX, ">$br_index_file" or die "Can't open $br_index_file to read: $!\n
 my $print_en = 1;
 my $print_br = 0;
 my $print_br_menu = 0;
+my $print_stats_code = 1;
 
 foreach (@index_file_lines) {
 
@@ -147,6 +175,13 @@ foreach (@index_file_lines) {
   s/.io\/m/.io\/m\/br/g;
   s/.io\/apps/.io\/br\/apps/g;
   s/Personal\sWebsite/Website Pessoal/g;
+
+  if (( m/<\/body>/ ) && ( $print_stats_code == 1 )) {
+    foreach (@stats_code) {
+      print BR_INDEX $_;
+    }
+    print BR_INDEX "\n";
+  }
 
   if ( m/<!--\sTop Menu\s-->/ ) {
     $print_br_menu = 1;
@@ -217,10 +252,14 @@ foreach (@index_file_lines) {
     }
   }
 
+  if ( m/<!--\sDefault\sStatcounter\scode/ ) {
+    $print_stats_code = 0;
+  }
+
 }
 
 
-# Update menu on br tools page
+# Update menu and stats code on br tools page
 
 open BR_TOOLS_INDEX, "$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
 my @br_tools_index_file_lines = <BR_TOOLS_INDEX>;
@@ -228,9 +267,16 @@ close BR_TOOLS_INDEX;
 
 my @br_tools_menu = @br_menu;
 my $print_menu = 0;
+my $print_stats_code = 1;
 
 open BR_TOOLS_INDEX, ">$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
 foreach (@br_tools_index_file_lines) {
+  if (( m/<\/body>/ ) && ( $print_stats_code == 1 )) {
+    foreach (@stats_code) {
+      print BR_TOOLS_INDEX $_;
+    }
+    print BR_TOOLS_INDEX "\n";
+  }
   if ( m/<!--\sTop Menu\s-->/ ) {
     $print_menu = 1;
     foreach (@br_tools_menu) {
@@ -246,6 +292,9 @@ foreach (@br_tools_index_file_lines) {
   }
   if ( m/<!--\send\s-->/ ) {
     $print_menu = 0;
+  }
+  if ( m/<!--\sDefault\sStatcounter\scode/ ) {
+    $print_stats_code = 0;
   }
 
 }
@@ -299,7 +348,7 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
   system "cp $projects_path/$apps_proj_dirs[$i]/app/src/main/ic_launcher-web.png $pages_root_path/res/img/$apps_site_dirs[$i]_icon.png";
   system "cp $projects_path/$apps_proj_dirs[$i]/app/src/main/ic_launcher-web.png $pages_root_path/br/res/img/$apps_site_dirs[$i]_icon.png";
 
-  # ... add menu to app page
+  # ... add menu and stats code to app page
 
   $app_index_file = "$pages_root_path/apps/".$apps_site_dirs[$i]."/index.html";
 
@@ -309,6 +358,12 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
 
   open APP_INDEX, ">$app_index_file" or die "Can't open $app_index_file to read: $!\n";
   foreach (@app_index_file_lines) {
+    if ( m/<\/body>/ ) {
+      foreach (@stats_code) {
+        print APP_INDEX $_;
+      }
+      print APP_INDEX "\n";
+    }
     s/style.css/..\/..\/style.css/g;
     print APP_INDEX $_;
     if ( m/<body>/ ) {
@@ -324,7 +379,7 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
   }
   close APP_INDEX;
 
-  # ... add menu to br page
+  # ... add menu and stats code to br page
 
   $app_index_file = "$pages_root_path/br/apps/".$apps_site_dirs[$i]."/index.html";
 
@@ -334,6 +389,12 @@ for (my $i = 0; $i < @apps_proj_dirs; $i++) {
 
   open BR_APP_INDEX, ">$app_index_file" or die "Can't open $app_index_file to read: $!\n";
   foreach (@app_index_file_lines) {
+    if ( m/<\/body>/ ) {
+      foreach (@stats_code) {
+        print BR_APP_INDEX $_;
+      }
+      print BR_APP_INDEX "\n";
+    }
     s/style.css/..\/..\/style.css/g;
     print BR_APP_INDEX $_;
     if ( m/<body>/ ) {
