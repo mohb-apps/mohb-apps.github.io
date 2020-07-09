@@ -43,18 +43,18 @@ p.title {
 }
 
 a:link {
-  color: grey;
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
   text-decoration: none;
 }
 
 a:hover {
-  color: grey;
+  color: inherit;
   text-decoration: underline;
-}
-
-a:visited {
-  color: grey;
-  text-decoration: none;
 }
 
 ul.menu {
