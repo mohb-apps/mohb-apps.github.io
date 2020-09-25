@@ -302,10 +302,10 @@ li a:hover, .dropdown:hover .dropbtn {
   margin-right: 0px;
 }
 
-.elementary_logo {
-  grid-area: elementary_logo;
+.fedora_logo {
+  grid-area: fedora_logo;
   margin: auto;
-  width: 500px;
+  width: 300px;
 }
 
 .android-studio_logo {
@@ -394,7 +394,7 @@ li a:hover, .dropdown:hover .dropbtn {
 .tools-grid-container {
   display: grid;
   grid-template-areas:
-  'elementary_logo elementary_logo'
+  'fedora_logo fedora_logo'
   'android-studio_logo android-studio_logo'
   'java_logo gimp_logo'
   'git_logo github_logo';
