@@ -47,6 +47,13 @@ img.fedora_logo {
   margin-bottom: 120px;
 }
 
+img.gnome_logo {
+  margin: auto;
+  width: 35%;
+  margin-top: 100px;
+  margin-bottom: 120px;
+}
+
 img.android-studio_logo {
   margin: auto;
   width: 60%;
