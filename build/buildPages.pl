@@ -121,6 +121,32 @@ open TOOLS_INDEX, "$tools_index_file" or die "Can't open $tools_index_file to re
 my @tools_index_file_lines = <TOOLS_INDEX>;
 close TOOLS_INDEX;
 
+my @temp;
+my $copy = 1;
+my $stop = 0;
+
+foreach (@tools_index_file_lines) {
+  if ( m/<!--\sDefault\sStatcounter\scode/ ) {
+    $copy = 0;
+    while ($stop == 0) {
+      $last = pop @temp;
+      if ($last =~ /<\/div>/) {
+        push @temp, $last;
+        push @temp, "\n";
+        $stop = 1;
+      }
+    }
+  }
+  if ($copy == 1) {
+    push (@temp, $_);
+  }
+  if ( m/<!--\sEnd\sof\sStatcounter\sCode/ ) {
+    $copy = 1;
+  }
+}
+
+@tools_index_file_lines = @temp;
+
 my $print_menu = 0;
 my $print_stats_code = 1;
 
@@ -264,6 +290,32 @@ foreach (@index_file_lines) {
 open BR_TOOLS_INDEX, "$br_tools_index_file" or die "Can't open $br_tools_index_file to read: $!\n";
 my @br_tools_index_file_lines = <BR_TOOLS_INDEX>;
 close BR_TOOLS_INDEX;
+
+my @temp;
+my $copy = 1;
+my $stop = 0;
+
+foreach (@br_tools_index_file_lines) {
+  if ( m/<!--\sDefault\sStatcounter\scode/ ) {
+    $copy = 0;
+    while ($stop == 0) {
+      $last = pop @temp;
+      if ($last =~ /<\/div>/) {
+        push @temp, $last;
+        push @temp, "\n";
+        $stop = 1;
+      }
+    }
+  }
+  if ($copy == 1) {
+    push (@temp, $_);
+  }
+  if ( m/<!--\sEnd\sof\sStatcounter\sCode/ ) {
+    $copy = 1;
+  }
+}
+
+@br_tools_index_file_lines = @temp;
 
 my @br_tools_menu = @br_menu;
 my $print_menu = 0;
